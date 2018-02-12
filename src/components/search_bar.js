@@ -14,19 +14,24 @@ class SearchBar extends Component {
 
     //this is where the value of the (input) variable is saved
     //creating state variable in constructor?
-    this.state = { term: 'Search Here' };
+    this.state = { term: '' };
   }
 
   render() {
     // return <input onChange={this.onInputChange} />
     //must use setState to inform react that state has changed, trigers background functionality
     return (
-      <div>
+      <div className="search-bar">
         <input 
           value={this.state.term}
-          onChange={event => this.setState({ term: event.target.value})} />
+          onChange={event => this.onInputChange(event.target.value)} />
       </div>
     ); 
+  }
+
+  onInputChange(term) {
+    this.setState({term});
+    this.props.onSearchTermChange(term);
   }
 
 //common naming convention
